@@ -1,6 +1,7 @@
 package com.betrybe.sistemadevotacao;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Define a classe GerenciamentoVotacao.
@@ -38,7 +39,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
   @Override
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
     for (String cpf : cpfsComputados) {
-      if (cpf == cpfPessoaEleitora) {
+      if (Objects.equals(cpf, cpfPessoaEleitora)) {
         System.out.println("Pessoa eleitora já votou!");
         return;
       }
@@ -64,7 +65,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
     for (PessoaCandidata pessoa : pessoasCandidatas) {
       int votesReceived = pessoa.getVotos();
-      double votesPercentage = (double) (votesReceived / totalVotes) * 100;
+      double votesPercentage = ((double) votesReceived / totalVotes) * 100;
       int votesRounded = (int) Math.round(votesPercentage);
 
       System.out.printf("Nome: %s - %s votos ( %s%% )", pessoa.getNome(), votesReceived,
